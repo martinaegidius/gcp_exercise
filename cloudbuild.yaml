@@ -1,0 +1,22 @@
+#will build docker images for train and evaluation for new pushes to main. 
+steps:
+- name: 'gcr.io/cloud-builders/docker'
+  id: 'Build container image'
+  args: ['build',
+  '.', 
+  '-t', 
+  'europe-west1-docker.pkg.dev/mlopsdtu2/docker-container-test/docker.image', 
+  '-f', 
+  'Dockerfile']
+- name: 'gcr.io/cloud-builders/docker'
+  id: 'Push train container image'
+  args: ['push',
+  'europe-west1-docker.pkg.dev/mlopsdtu2/docker-container-test/docker.image']
+
+options: 
+  logging: CLOUD_LOGGING_ONLY
+  
+  
+
+
+
